@@ -1,0 +1,36 @@
+SOURCE CODE: #include <stdio.h>
+
+  #include <math.h>
+
+  float f(float x) {
+    return 3 * x - cos(x) - 1;
+  }
+float g(float x) {
+  return 3 + sin(x);
+}
+void newton_raphson(double x0, double tol, int max_iter) {
+  double x1;
+  int iter = 1;
+  while (iter <= max_iter) {
+    x1 = x0 - f(x0) / g(x0);
+    printf("Step %d: x1 = %.6lf\n", iter, x1);
+    if (fabs(x1 - x0) < tol) {
+      printf("Root found: %.6lf\n", x1);
+      printf("Iterations performed: %d\n", iter);
+      return;
+    }
+    x0 = x1;
+    iter++;
+  }
+  printf("Max steps reached without convergence. Approximate root: %.6lf\n", x1);
+}
+int main() {
+  double x0, tol;
+  int max_iter = 20;
+  printf("Enter the initial guess x0:\n");
+  scanf("%lf", & x0);
+  printf("Enter the tolerance level:\n");
+  scanf("%lf", & tol);
+  newton_raphson(x0, tol, max_iter);
+  return 0;
+}

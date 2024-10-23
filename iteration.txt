@@ -1,0 +1,45 @@
+#include<stdio.h>
+
+#include<math.h>
+
+double f(double x) {
+    return cos(x) - 3 * x + 1;
+}
+double g(double x) {
+    return (cos(x) + 1) / 3;
+}
+double dg(double x) {
+    return -sin(x) / 3;
+}
+int main() {
+    double x0, x1, aerr;
+    int max_steps, step = 0;
+    do {
+      printf("Enter initial guess: ");
+      scanf("%lf", & x0);
+      if (fabs(dg(x0)) < 1) {
+        break;
+      } 
+      else {
+        printf("Try again: ");
+      }
+    } while (1);
+    printf("Enter the allowed error: ");
+    scanf("%lf", & aerr);
+    printf("Enter allowed max steps: ");
+    scanf("%d", & max_steps);
+    do {
+      x1 = g(x0);
+      step++;
+      printf("Step %d: x1 = %0.4lf\n", step, x1);
+      if (fabs(x1 - x0) < aerr) break;
+      x0 = x1;
+    } while (step < max_steps);
+    if (step >= max_steps) {
+      printf("Max steps reached without convergence.\n");
+    } 
+    else {
+      printf("Root is approx: %0.4lf\n", x1);
+    }
+  return 0;
+}

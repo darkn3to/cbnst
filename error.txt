@@ -1,0 +1,17 @@
+#include<stdio.h>
+
+#include<math.h>
+
+int main() {
+  float true_val, approx_val = 1.414;
+  float abs_err = 0.0, relative_err = 0.0, percentage_err = 0.0;
+  printf("Enter the true value:\n");
+  scanf("%f", & true_val);
+  abs_err = fabs(true_val - approx_val);
+  relative_err = fabs(abs_err / true_val);
+  percentage_err = relative_err * 100;
+  printf("Absolute Error = %f\n", abs_err);
+  printf("Relative Error = %f\n", relative_err);
+  printf("Percentage Error = %f%%\n", percentage_err);
+  return 0;
+}

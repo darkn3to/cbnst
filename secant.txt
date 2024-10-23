@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+#include <math.h>
+
+double f(double x) {
+  return (x * x * x) - 5 * x + 1;
+}
+void secant_method(double x0, double x1, double tol, int max_iter) {
+  double x2;
+  int iter = 1;
+  while (iter <= max_iter) {
+    if (fabs(f(x1) - f(x0)) < tol) {
+      printf("Division by zero detected. Secant method fails.\n");
+      return;
+    }
+    x2 = x1 - (f(x1) * (x1 - x0)) / (f(x1) - f(x0));
+    printf("Value of x2: %.6lf | Value of f(x2): %.6lf\n", x2, f(x2));
+    if (fabs(f(x2)) < tol) {
+      printf("Root found: %.6lf\n", x2);
+      printf("Iterations performed: %d\n", iter);
+      return;
+    }
+    x0 = x1;
+    x1 = x2;
+    iter++;
+  }
+  printf("Approximate root after %d iterations: %.6lf\n", max_iter, x2);
+}
+int main() {
+  double x0, x1, tol;
+  int max_iter = 20;
+  printf("Enter the values of x0 and x1 (initial guesses):\n");
+  scanf("%lf %lf", & x0, & x1);
+  printf("Enter the tolerance level:\n");
+  scanf("%lf", & tol);
+  secant_method(x0, x1, tol, max_iter);
+  return 0;
+}
