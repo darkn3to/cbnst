@@ -6,7 +6,7 @@
 int main() {
   float x0, x1, x2, f0, f1, f2, error;
   int max_steps = 0;
-  int step = 1;
+  int step = 1;//step=0?
   printf("Enter two approximations x0, x1: ");
   scanf("%f%f", & x0, & x1);
   printf("Enter allowed error: ");
